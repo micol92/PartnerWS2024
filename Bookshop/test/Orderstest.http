@@ -1,0 +1,82 @@
+@server = http://localhost:4004
+//@me = Authorization: Basic {{$processEnv USER}}:
+
+@me = Authorization: Basic ALICE:
+@admin02 = Authorization: Basic admin02:
+
+### ------------------------------------------------------------------------
+# Create Orders2
+POST {{server}}/odata/v4/orders/Orders2
+Content-Type: application/json;IEEE754Compatible=true
+Authorization: Basic tom:
+
+{
+ "OrderNo": "ORD001",
+ "buyer": "bid01", 
+ "currency_code": "USD",
+ "orddate": "2024-09-18",
+ "items" : [
+  {
+    "ID": "itm01",
+    "OrderNo": "ORD001",
+    "books_id": "100", 
+    "quantity": 1,
+    "title" : "you're doing well as usual",
+    "price": 100.1
+   },{
+    "ID": "itm02",
+    "OrderNo": "ORD001",
+    "books_id": "200", 
+    "quantity": 2,
+    "title" : "life is so cool",
+    "price": 100.1
+  }]
+}
+
+
+### ------------------------------------------------------------------------
+# Get Orders2
+GET  {{server}}/odata/v4/orders/Orders2?$expand=items
+Authorization: Basic tom2:
+
+### ------------------------------------------------------------------------
+# Get Orders2_Items
+GET  {{server}}/odata/v4/orders/Orders2_Items
+Authorization: Basic tom2:
+
+
+### ------------------------------------------------------------------------
+# DELETE Orders2 & Items
+DELETE  {{server}}/odata/v4/orders/Orders2(OrderNo='ORD001')
+Authorization: Basic tom2:
+
+
+
+
+### ------------------------------------------------------------------------
+# Create Orders
+POST {{server}}/odata/v4/orders/Orders
+Content-Type: application/json;IEEE754Compatible=true
+Authorization: Basic tom:
+
+{
+ "OrderNo": "ORD001",
+ "buyer": "bid01", 
+ "currency_code": "USD",
+ "Items" : [
+  {
+    "ID": "itm01",
+    "up__OrderNo": "ORD001",
+    "books_id": "100", 
+    "quantity": 1,
+    "title" : "you're doing well as usual",
+    "price": 100.1
+   },{
+    "ID": "itm02",
+    "up__OrderNo": "ORD001",
+    "books_id": "200", 
+    "quantity": 2,
+    "title" : "life is so cool",
+    "price": 100.1
+  }]
+}

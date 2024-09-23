@@ -1,0 +1,19 @@
+{
+  "welcomeFile": "project2/index.html",
+  "authenticationMethod": "none",
+  "routes": [
+    {
+      "source": "^/books/(.*)$",
+      "target": "/books/$1",
+      "destination": "bookshop-auth-token-exchg",
+      "authenticationType": "none",
+      "csrfProtection": false
+    },
+    {
+      "source": "^/project2/(.*)$",
+      "target": "$1",
+      "authenticationType": "none",
+      "localDir": "../webapp"
+    }
+  ]
+}

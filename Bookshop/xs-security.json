@@ -1,0 +1,62 @@
+{
+  "xsappname": "Bookshop-auth",
+  "description": "define authentication and authorities",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.admin",
+      "description": "Admin"
+    },
+    {
+      "name": "$XSAPPNAME.support",
+      "description": "Support"
+    }
+  ],
+  "attributes": [
+    {
+      "name": "department",
+      "description": "department of employee",
+      "valueType" : "string",
+      "valueRequired" : true
+
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "AdminRole",
+      "description": "View Advertisements",
+      "scope-references": [
+        "$XSAPPNAME.admin"
+      ]
+    },
+    {
+      "name": "ManagementRole",
+      "description": "Maintain Advertisements",
+      "scope-references": [
+        "$XSAPPNAME.support"
+      ],
+      "attribute-references" : [
+        {
+          "name" : "department",
+          "default-values" : ["management"]
+        }
+      ]
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "RC_Admin",
+      "description": "RC Admin",
+      "role-template-references": [
+        "$XSAPPNAME.AdminRole"
+      ]
+    },
+    {
+      "name": "RC_Support",
+      "description": "RC Support",
+      "role-template-references": [
+        "$XSAPPNAME.ManagementRole"
+      ]
+    }
+  ]
+}

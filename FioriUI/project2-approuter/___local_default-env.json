@@ -1,0 +1,9 @@
+{
+    "destinations": [
+    {
+        "name": "bookshop-auth-token-exchg",
+        "url": "http://localhost:4004",
+        "forwardAuthToken": true
+    }   
+  ]
+}   
